@@ -19,6 +19,9 @@ import { ExternalApiComponent } from './pages/external-api/external-api.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
+import { TestcomponentConnectionSpringBootComponent } from './components/testcomponent-connection-spring-boot/testcomponent-connection-spring-boot.component';
+
+
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { environment as env } from '../environments/environment';
     HomeContentComponent,
     LoadingComponent,
     ExternalApiComponent,
-    ErrorComponent
+    ErrorComponent,
+    TestcomponentConnectionSpringBootComponent,
   ],
   imports: [
     BrowserModule,

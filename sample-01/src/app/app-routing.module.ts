@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ExternalApiComponent } from './pages/external-api/external-api.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { TestcomponentConnectionSpringBootComponent } from './components/testcomponent-connection-spring-boot/testcomponent-connection-spring-boot.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
+  {
+    path: 'test',
+    component: TestcomponentConnectionSpringBootComponent
+  }
 ];
 
 @NgModule({
