@@ -24,9 +24,6 @@
           <li class="nav-item">
             <a routerLink="/" class="nav-link">Home</a>
           </li>
-          <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
-            <a routerLink="external-api" class="nav-link">External API</a>
-          </li>
         </ul>
 
         <ul class="navbar-nav d-none d-md-block">
@@ -123,7 +120,6 @@
             <fa-icon [icon]="faUser" class="mr-3"></fa-icon>
             <a routerLink="/profile">Profile</a>
           </li>
-
           <li>
             <fa-icon [icon]="faPowerOff" class="mr-3"></fa-icon>
             <button
