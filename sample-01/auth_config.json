@@ -1,0 +1,8 @@
+{
+  "domain": "dev-jxftas11.eu.auth0.com",
+  "clientId": "oVSgAUbN69keWlXcAEOnnupKFNgicSb4",
+  "audience": "https://DKE-API",
+  "apiUri": "http://localhost:3001",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error"
+}
