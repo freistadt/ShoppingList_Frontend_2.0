@@ -8,10 +8,9 @@
 </ng-template>
 
 <div class="container mt-5" *ngIf="auth.user$ | async as loggedInuser">
-    <h1>{{loggedInuser.name}}</h1>
-    {{sendLoggedUser(loggedInuser.name)}}
-    <!--<td><span><input type="button" value="sendLoggedUser" (click)="sendLoggedUser(loggedInuser.nickname)"></span></td>-->
-    <h4>{{name}}</h4>
+  <h1>{{loggedInuser.name}}</h1>
+  {{sendLoggedUser(loggedInuser.name)}}
+  <h1>{{back}}</h1>
 </div>
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +10,19 @@ import { AuthService } from '@auth0/auth0-angular';
 export class HomeComponent implements OnInit{
   nick: any;
   profileJson: string = null;
-  name: string;
+  back: string = null;
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, private client: HttpClient) {}
 
   ngOnInit(): void {
     this.nick = this.auth.user$.subscribe((profile) => (this.profileJson = JSON.stringify(profile, null, 2)));
   }
   sendLoggedUser(user: string) {
-    console.log(user);
-    this.name = user;
+    if (this.back === null){
+      this.client.get('http://localhost:8093/getTestString?name=Test').subscribe(data => {
+      console.log(data);
+      this.back = data.toString();
+    }); }
   }
 
 }
-
