@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class HomeComponent implements OnInit{
   nick: any;
   profileJson: string = null;
-  back: string = null;
+  back: string;
 
   constructor(public auth: AuthService, private client: HttpClient) {}
 
@@ -18,11 +18,12 @@ export class HomeComponent implements OnInit{
     this.nick = this.auth.user$.subscribe((profile) => (this.profileJson = JSON.stringify(profile, null, 2)));
   }
   sendLoggedUser(user: string) {
-    if (this.back === null){
       this.client.get('http://localhost:8093/getTestString?name=Test').subscribe(data => {
-      console.log(data);
-      this.back = data.toString();
-    }); }
+      this.back = data[0];
+      for (let i = 0; i < 1; i++){
+        console.log(data[i]);
+      }
+    });
   }
 
 }
