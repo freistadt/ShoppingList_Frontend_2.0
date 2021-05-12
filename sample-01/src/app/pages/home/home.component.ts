@@ -20,10 +20,6 @@ export class HomeComponent implements OnInit{
   sendLoggedUser(user: string) {
       this.client.get('http://localhost:8093/getTestString?name=Test').subscribe(data => {
       this.back = data[0];
-      for (let i = 0; i < 1; i++){
-        console.log(data[i]);
-      }
     });
   }
-
 }
