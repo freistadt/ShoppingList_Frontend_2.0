@@ -9,8 +9,14 @@
 
 <div class="container mt-5" *ngIf="auth.user$ | async as loggedInuser">
   <h1>{{loggedInuser.name}}</h1>
-  <td><span><input type="button" value="get List" (click)="sendLoggedUser(loggedInuser.name)"></span></td>
+  <td><span><input type="button" value="get NAME" (click)="sendLoggedUser(loggedInuser.name)"></span></td>
   <h1>{{back}}</h1>
+  <br>
+  <td><span><input type="button" value="get List" (click)="getPersonsList()"></span></td>
+  <tr *ngFor="let c of list">
+    <td>{{c}}</td>
+    <td>{{c}}</td>
+  </tr>
 </div>
 
 
