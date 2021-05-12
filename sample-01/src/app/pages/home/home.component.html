@@ -6,3 +6,17 @@
   <app-hero></app-hero>
   <app-home-content></app-home-content>
 </ng-template>
+
+<div class="container mt-5" *ngIf="auth.user$ | async as loggedInuser">
+    <h1>{{loggedInuser.name}}</h1>
+    {{sendLoggedUser(loggedInuser.name)}}
+    <!--<td><span><input type="button" value="sendLoggedUser" (click)="sendLoggedUser(loggedInuser.nickname)"></span></td>-->
+    <h4>{{name}}</h4>
+</div>
+
+
+
+
+
+
+
