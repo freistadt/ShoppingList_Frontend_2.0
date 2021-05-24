@@ -17,7 +17,30 @@
     <td>{{c}}</td>
     <td>{{c}}</td>
   </tr>
+
+<!--  TEST Delte later-->
+  <br>
+  <td><span><input type="button" value="get FOODList" (click)="getList()"></span></td>
+  <tr *ngFor="let c of list">
+    <td>{{c}}</td>
+    <td>{{c}}</td>
+  </tr>
 </div>
+
+<br>
+<h1>Search for food</h1>
+
+<form action="/action_page.php">
+  <label for="fname">Food name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click the "Submit" button and the form-data will be sent to a page on the
+  server called "action_page.php".</p>
+
+
 
 
 

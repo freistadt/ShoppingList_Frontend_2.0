@@ -30,4 +30,11 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  // Test delte maybe
+  public getList(): any{
+    return this.client.get('http://localhost:8093/getList?name=Onioin').subscribe( data => {
+      this.list = data;
+    });
+  }
+
 }
