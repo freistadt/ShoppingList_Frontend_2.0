@@ -22,7 +22,7 @@
   <tr *ngFor="let recipent of listFood | keyvalue">
     <td>{{recipent.key}}: <ul> <li> {{recipent.value}} </li> </ul></td>
   </tr>
-</div>
+
 
 <br>
 
@@ -31,10 +31,17 @@
 <input type="text" #foodBox><br><br>
 <button (click)="getValFood(foodBox)">Submit</button>
 
+
+<h1>Add shopping List</h1>
+<label>Shopping List name:</label>
+<input type="text" #listBox><br><br>
+<button (click)="getValShoppingList(listBox, loggedInuser.name)">Submit</button>
+
+
 <p>Click the "Submit" button and the form-data will be sent to a page on the
   server called "action_page.php".</p>
 
-
+</div>
 
 
 

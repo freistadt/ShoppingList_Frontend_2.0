@@ -54,4 +54,16 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  public getValShoppingList(item, user: string): any {
+    let body = new HttpParams();
+    body = body.set('listName', item.value);
+    body = body.set('userName', user.toString());
+
+    alert('Creating new Shopping List ' + item.value + ' user:' );
+    console.log(body.toString());
+    this.client.post('http://localhost:8093/addShoppingList', body).toPromise().then((data: any) => {
+      console.log(data);
+    });
+  }
+
 }
