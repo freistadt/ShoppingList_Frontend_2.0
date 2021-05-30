@@ -15,12 +15,6 @@ export class HomeComponent implements OnInit{
   public list: any;
   posteId: boolean;
 
-  postData = {
-    test: 'test',
-  };
-
-  url = 'http://localhost:8093/addFood';
-
   constructor(public auth: AuthService, private client: HttpClient) {}
 
   ngOnInit(): void {
@@ -44,29 +38,13 @@ export class HomeComponent implements OnInit{
     });
   }
 
-
-    /*
-        this.client.post<any>('http://localhost:8093/addFood', { name: 'Onion', food: 'Test' }).subscribe(data => {
-      this.posteId = data;
-    });
-        console.log('There was an error!');
-    return this.client.post<any>('http://localhost:8093/getList?name=Onioin&food=Test').subscribe(data => {
-      this.posteId = data;
-    });
-
-     this.client.post('http://localhost:8093/getList', {body}).subscribe(data => {
-        alert('ok');
-    });
-  }
-  */
-
-  public postTest(): any{
+  public postTest(): any {
     let body = new HttpParams();
     body = body.set('food', 'Test');
     body = body.set('name', 'Onioin');
 
     console.log(body.toString());
-    this.client.post(this.url, body).toPromise().then((data: any) => {
+    this.client.post('http://localhost:8093/addFood', body).toPromise().then((data: any) => {
       console.log(data);
     });
   }
