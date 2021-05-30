@@ -38,9 +38,9 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  public postTest(): any {
+  public getValFood(item): any {
     let body = new HttpParams();
-    body = body.set('food', 'Test');
+    body = body.set('food', item.value);
     body = body.set('name', 'Onioin');
 
     console.log(body.toString());

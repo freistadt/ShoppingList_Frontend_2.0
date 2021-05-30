@@ -19,11 +19,6 @@
   </tr>
 
 
-
-  <td><span><input type="button" value="test Button" (click)="postTest()"></span></td>
-
-
-
 <!--  TEST Delte later-->
   <br>
   <td><span><input type="button" value="get FOODList" (click)="getList()"></span></td>
@@ -33,14 +28,11 @@
 </div>
 
 <br>
+
 <h1>Search for food</h1>
-
-<form action="/action_page.php">
-  <label for="fname">Food name:</label>
-  <input type="text" id="fname" name="fname"><br><br>
-
-  <input type="submit" value="Submit">
-</form>
+<label>Food name:</label>
+<input type="text" #foodBox><br><br>
+<button (click)="getValFood(foodBox)">Submit</button>
 
 <p>Click the "Submit" button and the form-data will be sent to a page on the
   server called "action_page.php".</p>
