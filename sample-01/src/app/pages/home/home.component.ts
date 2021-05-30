@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit{
 
   public getList(user: string): any {
     let params = new HttpParams();
-    params = params.set('userName', user);
-    params = params.set('listName', 'Onioin');
+    params = params.set('userName', user.toString());
+    params = params.set('listName', 'Garlic2');
 
     return this.client.get('http://localhost:8093/getList', {params}).subscribe(data => {
       this.listFood = data;
