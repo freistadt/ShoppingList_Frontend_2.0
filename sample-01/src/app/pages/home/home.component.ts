@@ -32,8 +32,12 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  public getList(): any {
-    return this.client.get('http://localhost:8093/getList?name=domi').subscribe(data => {
+  public getList(user: string): any {
+    let params = new HttpParams();
+    params = params.set('userName', user);
+    params = params.set('listName', 'Onioin');
+
+    return this.client.get('http://localhost:8093/getList', {params}).subscribe(data => {
       this.listFood = data;
     });
   }

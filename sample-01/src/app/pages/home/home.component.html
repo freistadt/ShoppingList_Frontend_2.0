@@ -18,7 +18,7 @@
   </tr>
 
   <br>
-  <td><span><input type="button" value="get FOODList" (click)="getList()"></span></td>
+  <td><span><input type="button" value="get FOODList" (click)="getList(loggedInuser.name)"></span></td>
   <tr *ngFor="let recipent of listFood | keyvalue">
     <td>{{recipent.key}}: <ul> <li> {{recipent.value}} </li> </ul></td>
   </tr>
