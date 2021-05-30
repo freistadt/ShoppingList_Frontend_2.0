@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit{
   profileJson: string = null;
   back: string;
   public list: any;
+  public listFood: any;
   posteId: boolean;
 
   constructor(public auth: AuthService, private client: HttpClient) {}
@@ -31,10 +32,9 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  // Test delte maybe
   public getList(): any {
-    return this.client.get('http://localhost:8093/getList?name=Onioin').subscribe(data => {
-      this.list = data;
+    return this.client.get('http://localhost:8093/getList?name=domi').subscribe(data => {
+      this.listFood = data;
     });
   }
 
@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit{
     body = body.set('food', item.value);
     body = body.set('name', 'Onioin');
 
+    alert('Send item ' + item.value + ' to shopping list');
     console.log(body.toString());
     this.client.post('http://localhost:8093/addFood', body).toPromise().then((data: any) => {
       console.log(data);

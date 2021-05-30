@@ -15,15 +15,12 @@
   <td><span><input type="button" value="get List" (click)="getPersonsList()"></span></td>
   <tr *ngFor="let c of list">
     <td>{{c}}</td>
-    <td>{{c}}</td>
   </tr>
 
-
-<!--  TEST Delte later-->
   <br>
   <td><span><input type="button" value="get FOODList" (click)="getList()"></span></td>
-  <tr *ngFor="let c of list">
-    <td>{{c}}</td>
+  <tr *ngFor="let recipent of listFood | keyvalue">
+    <td>{{recipent.key}} - {{recipent.value}}</td>
   </tr>
 </div>
 
