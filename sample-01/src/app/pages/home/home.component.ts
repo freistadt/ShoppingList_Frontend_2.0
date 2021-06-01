@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class HomeComponent implements OnInit{
   nick: any;
   profileJson: string = null;
-  back: string;
+  back: any;
   public list: any;
   public listFood: any;
   posteId: boolean;
@@ -22,8 +22,10 @@ export class HomeComponent implements OnInit{
     this.nick = this.auth.user$.subscribe((profile) => (this.profileJson = JSON.stringify(profile, null, 2)));
   }
   sendLoggedUser(user: string) {
-      this.client.get('http://localhost:8093/getTestString?name=Test').subscribe(data => {
-      this.back = data[0][3];
+    let params = new HttpParams();
+    params = params.set('userName', user.toString());
+    this.client.get('http://localhost:8093/getShoppingLists', {params}).subscribe(data => {
+      this.back = data;
     });
   }
   public getPersonsList(): any{
