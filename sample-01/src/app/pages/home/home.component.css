@@ -2,3 +2,23 @@
 ul {
   list-style-type: square;
 }
+
+.list-group-mine .list-group-item {
+  background-color: #F0F1F3;
+}
+
+.no-border {
+  border: none;
+  outline: none;
+}
+
+.button-right {
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
+  margin: 0px 0px 0px 0px;
+  text-align: center;
+  border: none;
+  outline: none;
+  padding: 0px;
+}

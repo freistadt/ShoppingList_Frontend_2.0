@@ -1,3 +1,128 @@
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="shopping-card" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+
+    <symbol id="chevron-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+    </symbol>
+
+    <symbol id="plus" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+    </symbol>
+
+  </svg>
+
+</head>
+<body>
+
+<!-- Fehlende TODOS
+
+- automatisches Laden der Shopping List ohne auf Knopf drücken zu müssen
+- Items in den Shopping Listen untereinander ausgeben, lassen (nicht alles zusammengeklebt)
+- automatisches Reloading wenn ein Item eingefügt wird, sodass dieses direkt in Shoppping list sichtbar ist
+- blaue Markierung oder dergleichen für ausgewählte shopping liste (dass ersichlich welche ausgewählt
+- bei add item feld bezieht isch noch nicht auf Shopping list und fügt standartmäßig bei "Onioin" neue Produkte ein
+- grüne Bestätigungsmessage wenn Item erfolgreich eingefügt
+- (evtl) kein Rückspringen nach oben
+
+-->
+
+  <div class="container" *ngIf="auth.isLoading$ | async; else loaded">
+    <app-loading></app-loading>
+  </div>
+
+  <ng-template #loaded>
+    <app-hero></app-hero>
+    <app-home-content></app-home-content>
+  </ng-template>
+  <div class="container mt-5" *ngIf="auth.user$ | async as loggedInuser">
+
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-4">
+
+          <h4 class="Best shopping experience!">Best shopping experience!</h4>
+          <div class="card bg-dark text-white">
+            <img src="./assets/salad-1672505_1920.png" class="card-img" alt="...">
+            <div class="card-img-overlay">
+            </div>
+          </div>
+
+          <td><span><input type="button" value="get your Food Lists" (click)="sendLoggedUser(loggedInuser.name)"></span></td>
+
+          <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+            <a class="d-flex align-items-center flex-shrink-0 p-1 link-dark text-decoration-none">
+              &nbsp;<svg class="bi me-2" width="30" height="24"><use xlink:href="#shopping-card"/></svg>
+              <span class="fs-5 fw-semibold">Shopping List</span>
+            </a>
+            <a class="d-flex align-items-center flex-shrink-0 p-2 link-dark text-decoration-none border-bottom">
+              <button type="button" class="btn btn-light button-right d-inline-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getValShoppingList(listBox, loggedInuser.name)">
+                &nbsp;<svg class="bi me-2" width="20" height="20"><use xlink:href="#plus"/></svg>
+              </button>
+              <input type="text" class="form-control no-border" placeholder="Add shopping list" #listBox>
+            </a>
+
+            <div class="list-group list-group-flush border-bottom scrollarea">
+              <tr *ngFor="let c of back">
+                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" (click)="getList(loggedInuser.name, c)">
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class="mb-1">{{c}}</strong>
+                    <small><svg class="bi me-2" width="30" height="16"><use xlink:href="#chevron-right"/></svg></small>
+                  </div>
+                </a>
+              </tr>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+
+          <a class="d-flex align-items-center flex-shrink-0 p-2 link-dark text-decoration-none border-bottom">
+            <button type="button" class="btn btn-light button-right d-inline-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getValFood(foodBox)">
+              &nbsp;<svg class="bi me-2" width="20" height="20"><use xlink:href="#plus"/></svg>
+            </button>
+            <input type="text" class="form-control no-border" placeholder="Add food item to shopping list" #foodBox>
+          </a> <br>
+
+
+          <tr *ngFor="let recipent of listFood | keyvalue">
+
+            <div class="list-group list-group-mine" style="width: 35rem;">
+              <a class="list-group-item">{{recipent.key}}</a>
+            </div>
+
+            <div class="list-group list-group-flush">
+              <label class="list-group-item" style="text-indent:15px;">
+                <input class="form-check-input me-1" type="checkbox" value="">
+                &nbsp; {{recipent.value}}
+              </label>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+<!--
+
+
 <div class="container" *ngIf="auth.isLoading$ | async; else loaded">
   <app-loading></app-loading>
 </div>
@@ -8,12 +133,18 @@
 </ng-template>
 
 <div class="container mt-5" *ngIf="auth.user$ | async as loggedInuser">
+
+
+
   <h1>{{loggedInuser.name}}</h1>
   <td><span><input type="button" value="get your Food Lists" (click)="sendLoggedUser(loggedInuser.name)"></span></td>
   <h4><tr *ngFor="let c of back">
     <td>{{c}}</td>
   </tr></h4>
   <br>
+
+
+
   <td><span><input type="button" value="get List" (click)="getPersonsList()"></span></td>
   <tr *ngFor="let c of list">
     <td>{{c.toString()}}</td>
@@ -45,6 +176,7 @@
 
 </div>
 
+-->
 
 
 
