@@ -14,7 +14,15 @@ export class HomeComponent implements OnInit{
   back: any;
   public list: any;
   public listFood: any;
+
   posteId: boolean;
+
+  foodInCategory(test: any) {
+    for (const key of this.listFood.keys()) {
+      const value = this.listFood[key];
+      // Use `key` and `value`
+    }
+  }
 
   constructor(public auth: AuthService, private client: HttpClient) {}
 
@@ -28,16 +36,17 @@ export class HomeComponent implements OnInit{
       this.back = data;
     });
   }
+
   public getPersonsList(): any{
     this.client.get('http://localhost:8093/getTestString?name=Test').subscribe( data => {
       this.list = data;
     });
   }
 
-  public getList(user: string): any {
+  public getList(user: string, shoppingList: string): any {
     let params = new HttpParams();
     params = params.set('userName', user.toString());
-    params = params.set('listName', 'Garlic2');
+    params = params.set('listName', shoppingList);
 
     return this.client.get('http://localhost:8093/getList', {params}).subscribe(data => {
       this.listFood = data;

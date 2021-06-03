@@ -2,3 +2,7 @@
 ul {
   list-style-type: square;
 }
+
+.list-group-mine .list-group-item {
+  background-color: #F0F1F3;
+}
