@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit{
   public getValFood(item): any {
     let body = new HttpParams();
     body = body.set('food', item.value);
+    // TODO nicht nur default onion
     body = body.set('name', 'Onioin');
 
     alert('Send item ' + item.value + ' to shopping list');
