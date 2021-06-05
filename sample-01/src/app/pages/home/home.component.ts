@@ -3,6 +3,8 @@ import { AuthService } from '@auth0/auth0-angular';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -53,11 +55,11 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  public getValFood(item): any {
+  public getValFood(item, foodList: HTMLInputElement): any {
     let body = new HttpParams();
     body = body.set('food', item.value);
     // TODO nicht nur default onion
-    body = body.set('name', 'Onioin');
+    body = body.set('name', foodList.value);
 
     alert('Send item ' + item.value + ' to shopping list');
     console.log(body.toString());
@@ -77,5 +79,4 @@ export class HomeComponent implements OnInit{
       console.log(data);
     });
   }
-
 }
