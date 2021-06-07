@@ -16,9 +16,11 @@ export class HomeComponent implements OnInit{
   back: any;
   public list: any;
   public listFood: any;
+  map: Map<string, any>;
 
   posteId: boolean;
 
+  // TODO write function to get Value from map with key
   foodInCategory(test: any) {
     for (const key of this.listFood.keys()) {
       const value = this.listFood[key];
@@ -52,13 +54,15 @@ export class HomeComponent implements OnInit{
 
     return this.client.get('http://localhost:8093/getList', {params}).subscribe(data => {
       this.listFood = data;
+      this.map = new Map(Object.entries(data));
+      console.log(this.map);
     });
   }
 
+  // TODO würde hier nicht Liste wählen lassen sondern die aufgemachte Liste mitgeben
   public getValFood(item, foodList: HTMLInputElement): any {
     let body = new HttpParams();
     body = body.set('food', item.value);
-    // TODO nicht nur default onion
     body = body.set('name', foodList.value);
 
     alert('Send item ' + item.value + ' to shopping list');
