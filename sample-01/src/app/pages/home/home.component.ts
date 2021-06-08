@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit{
   }
 
   // TODO würde hier nicht Liste wählen lassen sondern die aufgemachte Liste mitgeben
-  public getValFood(item, foodList: HTMLInputElement): any {
+  public getValFood(item): any {
     let body = new HttpParams();
     body = body.set('food', item.value);
     body = body.set('name', this.currentList);
