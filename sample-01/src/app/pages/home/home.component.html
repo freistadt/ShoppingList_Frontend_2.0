@@ -100,16 +100,17 @@
         </a> <br>
 
 
-        <tr *ngFor="let recipent of listFood | keyvalue">
+
+        <tr *ngFor="let recipent of map.keys() ">
 
           <div class="list-group list-group-mine" style="width: 35rem;">
-            <a class="list-group-item">{{recipent.key}}</a>
+            <a class="list-group-item">{{recipent}}</a>
           </div>
 
-            <div class="list-group list-group-flush">
+            <div *ngFor="let x of map.get(recipent)" class="list-group list-group-flush">
               <label class="list-group-item" style="text-indent:15px;">
                 <input class="form-check-input me-1" type="checkbox" value="">
-                &nbsp; {{recipent.value}}
+                &nbsp; {{x}}
               </label>
             </div>
         </tr>

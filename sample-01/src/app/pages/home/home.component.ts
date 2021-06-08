@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit{
   back: any;
   public list: any;
   public listFood: any;
-  map: Map<string, any>;
+  map: Map<string, any> = new Map<string, any>();
+  currentList: string;
 
   posteId: boolean;
 
@@ -52,11 +53,12 @@ export class HomeComponent implements OnInit{
     let params = new HttpParams();
     params = params.set('userName', user.toString());
     params = params.set('listName', shoppingList);
+    this.currentList = shoppingList;
 
     return this.client.get('http://localhost:8093/getList', {params}).subscribe(data => {
       this.listFood = data;
       this.map = new Map(Object.entries(data));
-      console.log(this.map);
+      // console.log(this.map);
     });
   }
 
@@ -64,7 +66,7 @@ export class HomeComponent implements OnInit{
   public getValFood(item, foodList: HTMLInputElement): any {
     let body = new HttpParams();
     body = body.set('food', item.value);
-    body = body.set('name', foodList.value);
+    body = body.set('name', this.currentList);
     this.client.post('http://localhost:8093/addFood', body).toPromise().then((data: any) => {
       this.toastr.success('Erfolgreich eingefügt', 'Success');
     });
