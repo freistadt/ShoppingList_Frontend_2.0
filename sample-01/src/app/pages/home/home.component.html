@@ -36,6 +36,12 @@
 - (evtl) kein Rückspringen nach oben
 
 -->
+
+<button class="btn btn-primary" (click)="showToatr()">SHOW TOASTER</button>
+<router-outlet></router-outlet>
+
+
+
 <div class="container" *ngIf="auth.isLoading$ | async; else loaded">
   <app-loading></app-loading>
 </div>

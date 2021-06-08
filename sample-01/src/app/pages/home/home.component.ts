@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
 
 
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit{
     }
   }
 
-  constructor(public auth: AuthService, private client: HttpClient) {}
+  // TODO add to Constructor , private toastr: ToastrService and uncomment last function
+  constructor(public auth: AuthService, private client: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.nick = this.auth.user$.subscribe((profile) => (this.profileJson = JSON.stringify(profile, null, 2)));
@@ -58,25 +60,24 @@ export class HomeComponent implements OnInit{
   public getValFood(item, foodList: HTMLInputElement): any {
     let body = new HttpParams();
     body = body.set('food', item.value);
-    // TODO nicht nur default onion
     body = body.set('name', foodList.value);
-
-    alert('Send item ' + item.value + ' to shopping list');
-    console.log(body.toString());
     this.client.post('http://localhost:8093/addFood', body).toPromise().then((data: any) => {
-      console.log(data);
+      this.toastr.success('Erfolgreich eingefügt', 'Success');
     });
   }
-
+  showToatr() {
+    this.toastr.success('Erfolgreich eingefügt', 'Success');
+  }
   public getValShoppingList(item, user: string): any {
     let body = new HttpParams();
     body = body.set('listName', item.value);
     body = body.set('userName', user.toString());
 
     alert('Creating new Shopping List ' + item.value + ' for user ' + user.toString());
-    console.log(body.toString());
     this.client.post('http://localhost:8093/addShoppingList', body).toPromise().then((data: any) => {
-      console.log(data);
+      this.toastr.success('Erfolgreich eingefügt', 'Success');
     });
   }
+
+
 }

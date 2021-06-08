@@ -18,6 +18,8 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { TestcomponentConnectionSpringBootComponent } from './components/testcomponent-connection-spring-boot/testcomponent-connection-spring-boot.component';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { TestcomponentConnectionSpringBootComponent } from './components/testcom
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
