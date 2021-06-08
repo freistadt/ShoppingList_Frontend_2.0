@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit{
     }
   }
 
-  // TODO add to Constructor , private toastr: ToastrService and uncomment last function
   constructor(public auth: AuthService, private client: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit(): void {
